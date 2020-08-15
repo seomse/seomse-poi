@@ -1,13 +1,5 @@
 /**
- * <pre>
- *  설    명 : poi 연동
- *
- *  작 성 자 : macle
- *  작 성 일 : 2020.07.28
- *  버    전 : 1.0
- *  수정이력 :
- *  기타사항 :
- * </pre>
- * @author Copyrights 2020 by ㈜섬세한사람들. All right reserved.
+ * 이 패키지는 apache poi 를 활용 하여 excel, ppt, doc 파일을 활용 하는 유틸성 클래스들을 제공 합니다.
+ * @author macle
  */
 package com.seomse.poi;
