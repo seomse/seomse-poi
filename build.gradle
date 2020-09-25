@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.seomse.poi'
-version '0.1.0-SNAPSHOT'
+version '0.1.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -15,9 +15,5 @@ dependencies {
     implementation 'org.apache.poi:poi-ooxml:3.16'
 
 
-    implementation 'ch.qos.logback:logback-core:1.2.3'
-    implementation 'ch.qos.logback:logback-classic:1.2.3'
-    implementation 'ch.qos.logback:logback-access:1.2.3'
 
-    implementation 'com.seomse.commons:seomse-commons:1.0.0'
 }

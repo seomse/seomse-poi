@@ -17,15 +17,12 @@
 
 package com.seomse.poi.excel;
 
-import com.seomse.commons.utils.ExceptionUtil;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 
@@ -38,7 +35,6 @@ import java.text.SimpleDateFormat;
  */
 @SuppressWarnings("unused")
 public class ExcelGet {
-    private static final Logger logger = LoggerFactory.getLogger(ExcelGet.class);
 
     private FormulaEvaluator formulaEvaluator;
 
@@ -223,8 +219,8 @@ public class ExcelGet {
                 }
                 rowCount ++;
             }catch(Exception e){
-                logger.error(ExceptionUtil.getStackTrace(e));
-                break;
+                throw new RuntimeException(e);
+
             }
 
 
@@ -250,8 +246,7 @@ public class ExcelGet {
                 }
                 columnCount ++;
             }catch(Exception e){
-                logger.error(ExceptionUtil.getStackTrace(e));
-                break;
+                throw new RuntimeException(e);
             }
         }
         return columnCount;

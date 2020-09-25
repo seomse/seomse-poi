@@ -16,13 +16,10 @@
 
 package com.seomse.poi.excel.example;
 
-import com.seomse.commons.utils.ExceptionUtil;
 import com.seomse.poi.excel.ExcelGet;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 
@@ -33,7 +30,6 @@ import java.io.FileInputStream;
  */
 public class ExcelGetExample {
 
-    private static final Logger logger = LoggerFactory.getLogger(ExcelGetExample.class);
 
     private ExcelGet excelGet;
     private XSSFRow row;
@@ -61,7 +57,7 @@ public class ExcelGetExample {
             }
 
         }catch(Exception e){
-            logger.error(ExceptionUtil.getStackTrace(e));
+            e.printStackTrace();
         }
     }
 

@@ -6,7 +6,7 @@
 
     <groupId>com.seomse.poi</groupId>
     <artifactId>seomse-poi</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
 
     <name>seomse-poi</name>
@@ -23,8 +23,8 @@
 
     <developers>
         <developer>
-            <name>seomse</name>
-            <email>comseomse@gmail.com</email>
+            <name>macle86</name>
+            <email>ysys86a@gmail.com</email>
         </developer>
     </developers>
 
@@ -111,33 +111,7 @@
         </plugins>
     </build>
 
-
     <dependencies>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.seomse.commons</groupId>
-            <artifactId>seomse-commons</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
