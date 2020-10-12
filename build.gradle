@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.seomse.poi'
-version '0.1.1-SNAPSHOT'
+version '0.1.2-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -12,7 +12,7 @@ repositories {
 dependencies {
 
 
-    implementation 'org.apache.poi:poi-ooxml:3.16'
+    implementation 'org.apache.poi:poi-ooxml:4.1.2'
 
 
 

@@ -17,7 +17,7 @@
 
 package com.seomse.poi.excel;
 
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -132,7 +132,7 @@ public class ExcelGet {
             return null;
         }
 
-        switch(cell.getCellTypeEnum()){
+        switch(cell.getCellType()){
 
 
             case NUMERIC:
@@ -149,7 +149,7 @@ public class ExcelGet {
                 return null;
             case FORMULA:
                 try{
-                    switch(formulaEvaluator.evaluateFormulaCellEnum(cell)){
+                    switch(formulaEvaluator.evaluateFormulaCell(cell)){
                         case NUMERIC:
                             return cellNumber(cell, dateFormat);
                         case STRING:
@@ -162,7 +162,7 @@ public class ExcelGet {
                             return null;
                     }
                 }catch(Exception e){
-                    switch(cell.getCachedFormulaResultTypeEnum()){
+                    switch(cell.getCachedFormulaResultType()){
                         case NUMERIC:
                             return cellNumber(cell, dateFormat);
                         case STRING:
@@ -189,7 +189,7 @@ public class ExcelGet {
      * @return string
      */
     private String cellNumber(XSSFCell cell, String dateFormat){
-        if(HSSFDateUtil.isCellDateFormatted(cell) && dateFormat != null){
+        if(DateUtil.isCellDateFormatted(cell) && dateFormat != null){
             SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
             return formatter.format(cell.getDateCellValue());
         }
