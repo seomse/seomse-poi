@@ -25,10 +25,14 @@
         <developer>
             <name>macle86</name>
             <email>ysys86a@gmail.com</email>
+            <id>macle86</id>
+            <organization>seomse</organization>
         </developer>
         <developer>
             <name>wjrmffldrhrl</name>
             <email>wjrmffldrhrl@gmail.com</email>
+            <id>wjrmffldrhrl</id>
+            <organization>seomse</organization>
         </developer>
     </developers>
 
