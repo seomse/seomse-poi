@@ -15,10 +15,10 @@ implementation 'com.seomse.poi:seomse-poi:0.1.2'
 
 # communication
 ### blog, homepage
-- www.seomse.com
-- github.com/seomse/
-- seomse.tistory.com
-- seomse.github.io
+- [www.seomse.com](https://www.seomse.com/)
+- [github.com/seomse](https://github.com/seomse)
+- [seomse.tistory.com](https://seomse.tistory.com/)
+- [seomse.github.io](https://seomse.github.io/)
 - seomse.com
 
 ### 카카오톡 오픈톡
@@ -31,8 +31,8 @@ implementation 'com.seomse.poi:seomse-poi:0.1.2'
  - comseomse@gmail.com
  
  
-# dev
+# main developer
  - macle
-   - github.com/macle86
+    -  [github.com/macle86](https://github.com/macle86)
  - wjrmffldrhrl
-   - github.com/wjrmffldrhrl
+   -   [github.com/wjrmffldrhrl](https://github.com/wjrmffldrhrl)
