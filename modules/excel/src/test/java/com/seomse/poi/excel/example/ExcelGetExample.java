@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package java.com.seomse.poi.excel.example;
+package com.seomse.poi.excel.example;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.com.seomse.poi.excel.ExcelGet;
+import com.seomse.poi.excel.ExcelGet;
 import java.io.FileInputStream;
 
 /**
