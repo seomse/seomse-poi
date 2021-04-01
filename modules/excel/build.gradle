@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.seomse.poi'
+version '0.1.2-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}

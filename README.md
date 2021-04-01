@@ -8,10 +8,10 @@
  - excel 데이터를 가져 오기 위한 유틸성 클래스
  
 # gradle
-implementation 'com.seomse.poi:seomse-poi:0.1.2'
+implementation 'com.seomse.poi:excel:0.1.0'
 
 - etc
-  - https://mvnrepository.com/artifact/com.seomse.poi/seomse-poi/0.1.2
+  - https://mvnrepository.com/artifact/com.seomse.poi/excel/0.1.0
 
 # communication
 ### blog, homepage
@@ -22,8 +22,8 @@ implementation 'com.seomse.poi:seomse-poi:0.1.2'
 - seomse.com
 
 ### 카카오톡 오픈톡
- - https://open.kakao.com/o/g6vzOKqb
-
+- https://open.kakao.com/o/g6vzOKqb
+  - 참여코드 : seomse 
 ### 슬랙 slack
 - https://seomse.slack.com/
 

@@ -1,2 +1,4 @@
 rootProject.name = 'seomse-poi'
+include 'modules:excel'
+findProject(':modules:excel')?.name = 'excel'
 
