@@ -17,13 +17,13 @@
 
 package com.seomse.poi.excel;
 
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 /**
@@ -47,48 +47,97 @@ public class ExcelGet {
         this.formulaEvaluator = formulaEvaluator;
     }
 
+
+
     /**
-     * XSSFWorkbook 설정
+     * Workbook 설정
      * 반드시 설정 해야함
      * example)
-     * SSFWorkbook work = new XSSFWorkbook(new FileInputStream(excelFilePath));
-     * excelGet.setXSSFWorkbook(work);
-     * @param xSSFWorkbook XSSFWorkbook
+     * Workbook work = new XSSFWorkbook(new FileInputStream(excelFilePath));
+     * excelGet.setWorkbook(work);
+     * @param workbookPath file name or file path
+     * @return Workbook
      */
-    public void setXSSFWorkbook(XSSFWorkbook xSSFWorkbook){
-        formulaEvaluator = xSSFWorkbook.getCreationHelper().createFormulaEvaluator();
+    public Workbook setWorkbook(String workbookPath) throws IOException {
+        Workbook workbook;
+
+        if(workbookPath.endsWith(".xlsx")){
+            workbook = new XSSFWorkbook(new FileInputStream(workbookPath));
+        }else{
+            workbook = new HSSFWorkbook(new FileInputStream(workbookPath));
+        }
+
+        formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+
+        return workbook;
+    }
+
+    /**
+     * Workbook 설정
+     * 반드시 설정 해야함
+     * example)
+     * Workbook work = new XSSFWorkbook(new FileInputStream(excelFilePath));
+     * excelGet.setWorkbook(work);
+     * @param file xlsx, xls file
+     * @return Workbook
+     */
+    public Workbook setWorkbook(File file) throws IOException {
+        Workbook workbook;
+
+        if(file.getName().endsWith(".xlsx")){
+            workbook = new XSSFWorkbook(new FileInputStream(file));
+        }else{
+            workbook = new HSSFWorkbook(new FileInputStream(file));
+        }
+
+        formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+
+        return workbook;
+    }
+
+
+    /**
+     * Workbook 설정
+     * 반드시 설정 해야함
+     * example)
+     * Workbook work = new XSSFWorkbook(new FileInputStream(excelFilePath));
+     * excelGet.setWorkbook(work);
+     * @param workbook XSSFWorkbook
+     */
+    public void setWorkbook(Workbook workbook){
+        formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
     }
 
     /**
      * cell 값 얻기
-     * @param sheet XSSFSheet
+     * @param sheet Sheet
      * @param rowNum int row num first 0
      * @param cellNum int cell num first 0
      * @return string
      */
-    public String getCellValue( XSSFSheet sheet, int rowNum, int cellNum){
+    public String getCellValue(Sheet sheet, int rowNum, int cellNum){
         return getCellValue(sheet, rowNum, cellNum, null);
     }
 
     /**
      * cell 값 얻기
-     * @param row XSSFRow
+     * @param row Row
      * @param cellNum int cell num first 0
      * @return string
      */
-    public String getCellValue(XSSFRow row, int cellNum){
+    public String getCellValue(Row row, int cellNum){
 
         return getCellValue(row, cellNum, null );
     }
 
     /**
      * cell의 값을 스트링 형태로 반환
-     * @param row XSSFRow
+     * @param row Row
      * @param cellNum int cell num first 0
      * @param dateFormat 테이터 포멧(ex:yyyy.MM.dd HH:mm:ss) 날짜형식이 아닐경우 null 전달
      * @return string cell의값을 스트링형태로 반환
      */
-    public String getCellValue(XSSFRow row, int cellNum, String dateFormat){
+    public String getCellValue(Row row, int cellNum, String dateFormat){
         if(row == null){
             return null;
         }
@@ -97,14 +146,14 @@ public class ExcelGet {
 
     /**
      * cell의 값을 스트링 형태로 반환
-     * @param sheet XSSFSheet
+     * @param sheet Sheet
      * @param rowNum int row num first 0
      * @param cellNum int cell num first 0
      * @param dateFormat String java date format example:)yyyyMMdd 날짜 형식이 아닐 경우 null 전달
      * @return string cell의값을 스트링형태로 반환
      */
-    public String getCellValue( XSSFSheet sheet, int rowNum, int cellNum, String dateFormat){
-        XSSFRow row = sheet.getRow(rowNum);
+    public String getCellValue( Sheet sheet, int rowNum, int cellNum, String dateFormat){
+        Row row = sheet.getRow(rowNum);
         if(row == null){
             return null;
         }
@@ -113,10 +162,10 @@ public class ExcelGet {
 
     /**
      * cell 값 얻기
-     * @param cell XSSFCell
+     * @param cell Cell
      * @return string
      */
-    public String getCellValue(XSSFCell cell){
+    public String getCellValue(Cell cell){
         return getCellValue(cell, null);
     }
 
@@ -127,7 +176,7 @@ public class ExcelGet {
      * @return string cell의값을 스트링형태로 반환
      */
     @SuppressWarnings("DuplicateBranchesInSwitch")
-    public String getCellValue(XSSFCell cell, String dateFormat){
+    public String getCellValue(Cell cell, String dateFormat){
         if(cell == null){
             return null;
         }
@@ -142,7 +191,7 @@ public class ExcelGet {
             case BOOLEAN:
                 return cell.getBooleanCellValue() + "";
             case ERROR:
-                return cell.getErrorCellString();
+                return Byte.toString(cell.getErrorCellValue());
             case BLANK:
                 return null;
             case _NONE:
@@ -157,7 +206,7 @@ public class ExcelGet {
                         case BOOLEAN:
                             return cell.getBooleanCellValue() + "";
                         case ERROR:
-                            return cell.getErrorCellString();
+                            return Byte.toString(cell.getErrorCellValue());
                         default:
                             return null;
                     }
@@ -170,7 +219,7 @@ public class ExcelGet {
                         case BOOLEAN:
                             return cell.getBooleanCellValue() + "";
                         case ERROR:
-                            return cell.getErrorCellString();
+                            return Byte.toString(cell.getErrorCellValue());
                         default:
                             return null;
                     }
@@ -184,11 +233,11 @@ public class ExcelGet {
 
     /**
      * cell 숫자형 값 얻기
-     * @param cell XSSFCell
+     * @param cell Cell
      * @param dateFormat String java date format example:)yyyyMMdd
      * @return string
      */
-    private String cellNumber(XSSFCell cell, String dateFormat){
+    private String cellNumber(Cell cell, String dateFormat){
         if(DateUtil.isCellDateFormatted(cell) && dateFormat != null){
             SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
             return formatter.format(cell.getDateCellValue());
@@ -204,11 +253,11 @@ public class ExcelGet {
     /**
      * row 개수 얻기
      * poi 사용중 건수가 적게 넘어 와서 개발함
-     * @param sheet XSSFSheet
+     * @param sheet Sheet
      * @return int row count
      */
-    public int getRowCount(XSSFSheet sheet){
-        XSSFRow row;
+    public int getRowCount(Sheet sheet){
+        Row row;
         int rowCount = sheet.getLastRowNum();
         //엑셀 라스트 로우넘 버그처리
         while(true){
@@ -231,15 +280,15 @@ public class ExcelGet {
     /**
      * Column 개수 얻기
      * poi 사용중 건수가 적게 넘어 와서 개발함
-     * @param row XSSFRow
+     * @param row Row
      * @return int Column count
      */
-    public int getColumnCount(XSSFRow row){
+    public int getColumnCount(Row row){
         int columnCount = row.getLastCellNum();
         //컬럼 마지막인덱스가져오기 poi자체에대한 버그처리
         while(true){
             try{
-                XSSFCell cell = row.getCell(columnCount);
+                Cell cell = row.getCell(columnCount);
 
                 if(cell == null){
                     break;

@@ -16,11 +16,13 @@
 
 package com.seomse.poi.excel.example;
 
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import com.seomse.poi.excel.ExcelGet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.seomse.poi.excel.ExcelGet;
 import java.io.FileInputStream;
 
 /**
@@ -32,7 +34,7 @@ public class ExcelGetExample {
 
 
     private ExcelGet excelGet;
-    private XSSFRow row;
+    private Row row;
 
     /**
      * 엑셀 파일 읽기
@@ -42,9 +44,17 @@ public class ExcelGetExample {
 
         try {
             excelGet = new ExcelGet();
-            XSSFWorkbook work = new XSSFWorkbook(new FileInputStream(excelFilePath));
-            excelGet.setXSSFWorkbook(work);
-            XSSFSheet sheet = work.getSheetAt(0);
+
+
+            Workbook work;
+            if(excelFilePath.endsWith("xlsx")) {
+                work = new XSSFWorkbook(new FileInputStream(excelFilePath));
+            }else{
+                work = new HSSFWorkbook(new FileInputStream(excelFilePath));
+            }
+
+            excelGet.setWorkbook(work);
+            Sheet sheet = work.getSheetAt(0);
             int rowCount = excelGet.getRowCount(sheet);
 
             for (int i = 0; i < rowCount ; i++) {
