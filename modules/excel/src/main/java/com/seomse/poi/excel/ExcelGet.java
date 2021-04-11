@@ -17,12 +17,9 @@
 
 package com.seomse.poi.excel;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
@@ -59,14 +56,7 @@ public class ExcelGet {
      * @return Workbook
      */
     public Workbook setWorkbook(String workbookPath) throws IOException {
-        Workbook workbook;
-
-        if(workbookPath.endsWith(".xlsx")){
-            workbook = new XSSFWorkbook(new FileInputStream(workbookPath));
-        }else{
-            workbook = new HSSFWorkbook(new FileInputStream(workbookPath));
-        }
-
+        Workbook workbook = WorkbookFactory.create(new File(workbookPath));
         formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
         return workbook;
@@ -82,14 +72,7 @@ public class ExcelGet {
      * @return Workbook
      */
     public Workbook setWorkbook(File file) throws IOException {
-        Workbook workbook;
-
-        if(file.getName().endsWith(".xlsx")){
-            workbook = new XSSFWorkbook(new FileInputStream(file));
-        }else{
-            workbook = new HSSFWorkbook(new FileInputStream(file));
-        }
-
+        Workbook workbook = WorkbookFactory.create(file);
         formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
         return workbook;
