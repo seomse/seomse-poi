@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Wigo Inc.
+ * Copyright (C) 2021 Seomse Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,13 @@
 
 package com.seomse.poi.excel;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 /**
+ * excel read default
+ *
  * @author macle
  */
 public class ExcelRead {
@@ -47,6 +50,56 @@ public class ExcelRead {
      */
     protected String getCellValue(int rowNum, int cellNum){
         return excelGet.getCellValue(sheet, rowNum, cellNum);
+    }
+
+
+    /**
+     * cell value string double 로 얻기
+     * @param cellNum int row num first 0
+     * @return double cell value
+     */
+    protected Double getDouble(int cellNum){
+      return getDouble(cellNum, null);
+    }
+
+    /**
+     * cell value double 로 얻기
+     * @param cellNum int row num first 0
+     * @param defaultValue default double value
+     * @return  double cell value
+     */
+    protected Double getDouble(int cellNum, Double defaultValue){
+        Cell cell = row.getCell(cellNum);
+
+        if(cell == null){
+            return defaultValue;
+        }
+        return cell.getNumericCellValue();
+    }
+
+    /**
+     * cell value Long 로 얻기
+     * @param cellNum int row num first 0
+     * @return long cell value
+     */
+    protected Long getLong(int cellNum){
+        return getLong(cellNum, null);
+    }
+
+    /**
+     * cell value Long 로 얻기
+     * @param cellNum int row num first 0
+     * @param defaultValue default long value
+     * @return long cell value
+     */
+    protected Long getLong(int cellNum, Long defaultValue){
+        Cell cell = row.getCell(cellNum);
+
+        if(cell == null){
+            return defaultValue;
+        }
+
+        return (long)cell.getNumericCellValue();
     }
 
 
