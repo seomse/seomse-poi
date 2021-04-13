@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Seomse Inc.
+ * Copyright (C) 2021 Seomse Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,7 @@
 
 package com.seomse.poi.excel.example;
 
-import com.seomse.poi.excel.ExcelGet;
-import org.apache.poi.ss.usermodel.Row;
+import com.seomse.poi.excel.ExcelRead;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -25,16 +24,9 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import java.io.File;
 
 /**
- * ExcelGet 예제
- *
  * @author macle
  */
-public class ExcelGetExample {
-
-
-    private ExcelGet excelGet;
-    private Row row;
-
+public class ExcelReadExample extends ExcelRead {
     /**
      * 엑셀 파일 읽기
      * @param excelFilePath string excel file path
@@ -42,8 +34,6 @@ public class ExcelGetExample {
     public void load(String excelFilePath){
 
         try {
-            excelGet = new ExcelGet();
-
 
             Workbook work = WorkbookFactory.create(new File(excelFilePath));
 
@@ -64,18 +54,8 @@ public class ExcelGetExample {
             e.printStackTrace();
         }
     }
-
-    /**
-     * cell value string 형태로 얻기
-     * @param cellNum int cell num first 0
-     * @return string cell value
-     */
-    private String getCellValue(int cellNum){
-        return excelGet.getCellValue(row, cellNum);
-    }
-
     public static void main(String[] args) {
-        ExcelGetExample excelGetExample = new ExcelGetExample();
-        excelGetExample.load("excel file path");
+        ExcelReadExample excelReadExample = new ExcelReadExample();
+        excelReadExample.load("excel file path");
     }
 }
